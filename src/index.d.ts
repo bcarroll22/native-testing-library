@@ -21,7 +21,7 @@ import {
 // EVENTS
 // ------
 
-type EventInit<T> = Partial<NativeSyntheticEvent<T>>
+type EventInit<T> = Partial<NativeSyntheticEvent<T>> & { validTargets?: string[] }
 
 export declare class NativeEvent {
   constructor(type: 'focus', init?: EventInit<TextInputFocusEventData>)
