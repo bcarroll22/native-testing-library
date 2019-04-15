@@ -1,5 +1,6 @@
 import { ReactElement, ComponentType } from 'react'
 import { ReactTestInstance, ReactTestRenderer, act } from 'react-test-renderer'
+import { OptionsReceived } from 'pretty-format'
 
 // EVENTS
 // ------
@@ -52,8 +53,7 @@ export declare function within<T = Queries>(element: ReactElement, queries?: T):
 // PREETY PRINT
 // ------------
 
-// TODO: options are pretty-format options
-export declare function prettyPrint(element: ReactTestRenderer | NativeTestInstance, maxLength?: number, options?: any): string
+export declare function prettyPrint(element: ReactTestRenderer | NativeTestInstance | string, maxLength?: number, options?: OptionsReceived): string
 
 // QUERIES
 // -------
