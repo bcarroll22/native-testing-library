@@ -12,36 +12,36 @@ export declare class NativeEvent {
 export declare function getEventHandlerName(key: string): string
 
 export interface FireEventFn {
-  (element: FiberRoot, event: NativeEvent): any
-  focus(element: FiberRoot, init?: any): any
-  blur(element: FiberRoot, init?: any): any
-  change(element: FiberRoot, init?: any): any
-  changeText(element: FiberRoot, value: string): any
-  contentSizeChange(element: FiberRoot, init?: any): any
-  endEditing(element: FiberRoot, init?: any): any
-  keyPress(element: FiberRoot, init?: any): any
-  submitEditing(element: FiberRoot, init?: any): any
-  layout(element: FiberRoot, init?: any): any
-  selectionChange(element: FiberRoot, init?: any): any
-  longPress(element: FiberRoot, init?: any): any
-  press(element: FiberRoot, init?: any): any
-  pressIn(element: FiberRoot, init?: any): any
-  pressOut(element: FiberRoot, init?: any): any
-  momentumScrollBegin(element: FiberRoot, init?: any): any
-  momentumScrollEnd(element: FiberRoot, init?: any): any
-  scroll(element: FiberRoot, init?: any): any
-  scrollBeginDrag(element: FiberRoot, init?: any): any
-  scrollEndDrag(element: FiberRoot, init?: any): any
-  load(element: FiberRoot, init?: any): any
-  error(element: FiberRoot, init?: any): any
-  progress(element: FiberRoot, init?: any): any
+  (element: NativeTestInstance, event: NativeEvent): any
+  focus(element: NativeTestInstance, init?: any): any
+  blur(element: NativeTestInstance, init?: any): any
+  change(element: NativeTestInstance, init?: any): any
+  changeText(element: NativeTestInstance, value: string): any
+  contentSizeChange(element: NativeTestInstance, init?: any): any
+  endEditing(element: NativeTestInstance, init?: any): any
+  keyPress(element: NativeTestInstance, init?: any): any
+  submitEditing(element: NativeTestInstance, init?: any): any
+  layout(element: NativeTestInstance, init?: any): any
+  selectionChange(element: NativeTestInstance, init?: any): any
+  longPress(element: NativeTestInstance, init?: any): any
+  press(element: NativeTestInstance, init?: any): any
+  pressIn(element: NativeTestInstance, init?: any): any
+  pressOut(element: NativeTestInstance, init?: any): any
+  momentumScrollBegin(element: NativeTestInstance, init?: any): any
+  momentumScrollEnd(element: NativeTestInstance, init?: any): any
+  scroll(element: NativeTestInstance, init?: any): any
+  scrollBeginDrag(element: NativeTestInstance, init?: any): any
+  scrollEndDrag(element: NativeTestInstance, init?: any): any
+  load(element: NativeTestInstance, init?: any): any
+  error(element: NativeTestInstance, init?: any): any
+  progress(element: NativeTestInstance, init?: any): any
 }
 export declare const fireEvent: FireEventFn
 
 // GET NODE TEXT
 // -------------
 
-export declare function getNodeText(node: FiberRoot): string
+export declare function getNodeText(node: NativeTestInstance): string
 
 // GET QUERIES FOR ELEMENT
 // -----------------------
@@ -53,7 +53,7 @@ export declare function within<T = Queries>(element: ReactElement, queries?: T):
 // ------------
 
 // TODO: options are pretty-format options
-export declare function prettyPrint(element: ReactTestRenderer | FiberRoot, maxLength?: number, options?: any): string
+export declare function prettyPrint(element: ReactTestRenderer | NativeTestInstance, maxLength?: number, options?: any): string
 
 // QUERIES
 // -------
@@ -62,7 +62,7 @@ type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 type Bound<T> = T extends (arg: any, ...rest: infer U) => infer V ? (...args: U) => V : never
 type BoundQueries<T> = { [P in keyof T]: Bound<T[P]> }
 
-export type FiberRoot = Omit<ReactTestInstance, 'find' | 'findAllByProps' | 'findAllByType' | 'findByProps' | 'findByType' | 'instance'>
+export type NativeTestInstance = Omit<ReactTestInstance, 'find' | 'findAllByProps' | 'findAllByType' | 'findByProps' | 'findByType' | 'instance'>
 
 export type TextMatch = string | RegExp | ((value: string) => boolean)
 export type FilterFn = (value: string, index: number) => boolean
@@ -80,55 +80,55 @@ export interface TextNormalizerOptions extends NormalizerOptions {
   types?: string[]
 }
 
-export declare function getByA11yHint(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot
-export declare function getByA11yLabel(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot
-export declare function getByA11yRole(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot
-export declare function getByA11yStates(container: FiberRoot, match: string[], options?: NormalizerOptions): FiberRoot
-export declare function getByA11yTraits(container: FiberRoot, match: string[], options?: NormalizerOptions): FiberRoot
-export declare function getByPlaceholder(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot
-export declare function getByText(container: FiberRoot, match: TextMatch, options?: TextNormalizerOptions): FiberRoot
-export declare function getByValue(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot
-export declare function getByTestId(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot
+export declare function getByA11yHint(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance
+export declare function getByA11yLabel(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance
+export declare function getByA11yRole(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance
+export declare function getByA11yStates(container: NativeTestInstance, match: string[], options?: NormalizerOptions): NativeTestInstance
+export declare function getByA11yTraits(container: NativeTestInstance, match: string[], options?: NormalizerOptions): NativeTestInstance
+export declare function getByPlaceholder(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance
+export declare function getByText(container: NativeTestInstance, match: TextMatch, options?: TextNormalizerOptions): NativeTestInstance
+export declare function getByValue(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance
+export declare function getByTestId(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance
 
-export declare function getAllByA11yHint(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot[]
-export declare function getAllByA11yLabel(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot[]
-export declare function getAllByA11yRole(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot[]
-export declare function getAllByA11yStates(container: FiberRoot, match: string[], options?: NormalizerOptions): FiberRoot[]
-export declare function getAllByA11yTraits(container: FiberRoot, match: string[], options?: NormalizerOptions): FiberRoot[]
-export declare function getAllByPlaceholder(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot[]
-export declare function getAllByText(container: FiberRoot, match: TextMatch, options?: TextNormalizerOptions): FiberRoot[]
-export declare function getAllByValue(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot[]
-export declare function getAllByTestId(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot[]
+export declare function getAllByA11yHint(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance[]
+export declare function getAllByA11yLabel(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance[]
+export declare function getAllByA11yRole(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance[]
+export declare function getAllByA11yStates(container: NativeTestInstance, match: string[], options?: NormalizerOptions): NativeTestInstance[]
+export declare function getAllByA11yTraits(container: NativeTestInstance, match: string[], options?: NormalizerOptions): NativeTestInstance[]
+export declare function getAllByPlaceholder(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance[]
+export declare function getAllByText(container: NativeTestInstance, match: TextMatch, options?: TextNormalizerOptions): NativeTestInstance[]
+export declare function getAllByValue(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance[]
+export declare function getAllByTestId(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance[]
 
-export declare function queryByA11yHint(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot | null
-export declare function queryByA11yLabel(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot | null
-export declare function queryByA11yRole(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot | null
-export declare function queryByA11yStates(container: FiberRoot, match: string[], options?: NormalizerOptions): FiberRoot | null
-export declare function queryByA11yTraits(container: FiberRoot, match: string[], options?: NormalizerOptions): FiberRoot | null
-export declare function queryByPlaceholder(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot | null
-export declare function queryByText(container: FiberRoot, match: TextMatch, options?: TextNormalizerOptions): FiberRoot | null
-export declare function queryByValue(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot | null
-export declare function queryByTestId(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): FiberRoot | null
+export declare function queryByA11yHint(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance | null
+export declare function queryByA11yLabel(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance | null
+export declare function queryByA11yRole(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance | null
+export declare function queryByA11yStates(container: NativeTestInstance, match: string[], options?: NormalizerOptions): NativeTestInstance | null
+export declare function queryByA11yTraits(container: NativeTestInstance, match: string[], options?: NormalizerOptions): NativeTestInstance | null
+export declare function queryByPlaceholder(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance | null
+export declare function queryByText(container: NativeTestInstance, match: TextMatch, options?: TextNormalizerOptions): NativeTestInstance | null
+export declare function queryByValue(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance | null
+export declare function queryByTestId(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): NativeTestInstance | null
 
-export declare function findByA11yHint(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot>
-export declare function findByA11yLabel(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot>
-export declare function findByA11yRole(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot>
-export declare function findByA11yStates(container: FiberRoot, match: string[], options?: NormalizerOptions): Promise<FiberRoot>
-export declare function findByA11yTraits(container: FiberRoot, match: string[], options?: NormalizerOptions): Promise<FiberRoot>
-export declare function findByPlaceholder(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot>
-export declare function findByText(container: FiberRoot, match: TextMatch, options?: TextNormalizerOptions): Promise<FiberRoot>
-export declare function findByValue(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot>
-export declare function findByTestId(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot>
+export declare function findByA11yHint(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance>
+export declare function findByA11yLabel(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance>
+export declare function findByA11yRole(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance>
+export declare function findByA11yStates(container: NativeTestInstance, match: string[], options?: NormalizerOptions): Promise<NativeTestInstance>
+export declare function findByA11yTraits(container: NativeTestInstance, match: string[], options?: NormalizerOptions): Promise<NativeTestInstance>
+export declare function findByPlaceholder(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance>
+export declare function findByText(container: NativeTestInstance, match: TextMatch, options?: TextNormalizerOptions): Promise<NativeTestInstance>
+export declare function findByValue(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance>
+export declare function findByTestId(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance>
 
-export declare function findAllByA11yHint(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot[]>
-export declare function findAllByA11yLabel(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot[]>
-export declare function findAllByA11yRole(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot[]>
-export declare function findAllByA11yStates(container: FiberRoot, match: string[], options?: NormalizerOptions): Promise<FiberRoot[]>
-export declare function findAllByA11yTraits(container: FiberRoot, match: string[], options?: NormalizerOptions): Promise<FiberRoot[]>
-export declare function findAllByPlaceholder(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot[]>
-export declare function findAllByText(container: FiberRoot, match: TextMatch, options?: TextNormalizerOptions): Promise<FiberRoot[]>
-export declare function findAllByValue(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot[]>
-export declare function findAllByTestId(container: FiberRoot, match: TextMatch, options?: NormalizerOptions): Promise<FiberRoot[]>
+export declare function findAllByA11yHint(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance[]>
+export declare function findAllByA11yLabel(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance[]>
+export declare function findAllByA11yRole(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance[]>
+export declare function findAllByA11yStates(container: NativeTestInstance, match: string[], options?: NormalizerOptions): Promise<NativeTestInstance[]>
+export declare function findAllByA11yTraits(container: NativeTestInstance, match: string[], options?: NormalizerOptions): Promise<NativeTestInstance[]>
+export declare function findAllByPlaceholder(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance[]>
+export declare function findAllByText(container: NativeTestInstance, match: TextMatch, options?: TextNormalizerOptions): Promise<NativeTestInstance[]>
+export declare function findAllByValue(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance[]>
+export declare function findAllByTestId(container: NativeTestInstance, match: TextMatch, options?: NormalizerOptions): Promise<NativeTestInstance[]>
 
 export interface Queries {
   getByA11yHint: typeof getByA11yHint
@@ -185,24 +185,24 @@ export interface Queries {
 // QUERY HELPERS
 // -------------
 
-export declare function defaultFilter(node: FiberRoot): boolean
+export declare function defaultFilter(node: NativeTestInstance): boolean
 export declare function getBaseElement(container: ReactTestRenderer | ReactTestInstance): ReactTestInstance
 export declare function getElementError(message: string, container: ReactTestRenderer): Error
 export declare function firstResultOrNull<T extends any[], U>(query: (...args: T) => U[], ...args: T): U | null
-export declare function filterNodeByType(node: FiberRoot, type: string): boolean
+export declare function filterNodeByType(node: NativeTestInstance, type: string): boolean
 export declare function queryAllByProp(
   attribute: string,
   container: ReactTestRenderer,
   match: TextMatch,
   options?: NormalizerOptions,
-): FiberRoot[]
+): NativeTestInstance[]
 export declare function queryByProp(
   attribute: string,
   container: ReactTestRenderer,
   match: TextMatch,
   options?: NormalizerOptions,
-): FiberRoot | null
-export function removeBadProperties(node: ReactTestInstance): FiberRoot
+): NativeTestInstance | null
+export function removeBadProperties(node: ReactTestInstance): NativeTestInstance
 
 // WAIT
 // ----
@@ -255,7 +255,7 @@ export declare function render<T>(ui: ReactElement, options: RenderOptionsWithQu
 
 export interface RenderResult {
   container: ReactTestRenderer
-  baseElement: FiberRoot
+  baseElement: NativeTestInstance
   debug: () => void
   rerender: (ui: ReactElement) => void
   unmount: () => void
