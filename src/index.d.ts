@@ -1,42 +1,81 @@
 import { ReactElement, ComponentType } from 'react'
 import { ReactTestInstance, ReactTestRenderer, act } from 'react-test-renderer'
 import { OptionsReceived } from 'pretty-format'
+import {
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
+  TextInputChangeEventData,
+  TextInputContentSizeChangeEventData,
+  TextInputEndEditingEventData,
+  TextInputKeyPressEventData,
+  TextInputSubmitEditingEventData,
+  LayoutChangeEvent,
+  TextInputSelectionChangeEventData,
+  GestureResponderEvent,
+  ScrollResponderEvent,
+  ImageLoadEventData,
+  ImageErrorEventData,
+  ImageProgressEventDataIOS,
+} from 'react-native'
 
 // EVENTS
 // ------
 
-// TODO: type second parameter
+type EventInit<T> = Partial<NativeSyntheticEvent<T>>
+
 export declare class NativeEvent {
-  constructor(typeArg: string, event?: any)
+  constructor(type: 'focus', init?: EventInit<TextInputFocusEventData>)
+  constructor(type: 'blur', init?: EventInit<TextInputFocusEventData>)
+  constructor(type: 'change', init?: EventInit<TextInputChangeEventData>)
+  constructor(type: 'changeText', value: string)
+  constructor(type: 'contentSizeChange', init?: EventInit<TextInputContentSizeChangeEventData>)
+  constructor(type: 'endEditing', init?: EventInit<TextInputEndEditingEventData>)
+  constructor(type: 'keyPress', init?: EventInit<TextInputKeyPressEventData>)
+  constructor(type: 'submitEditing', init?: EventInit<TextInputSubmitEditingEventData>)
+  constructor(type: 'layout', init?: EventInit<LayoutChangeEvent['nativeEvent']>)
+  constructor(type: 'selectionChange', init?: EventInit<TextInputSelectionChangeEventData>)
+  constructor(type: 'longPress', init?: EventInit<GestureResponderEvent>)
+  constructor(type: 'press', init?: EventInit<GestureResponderEvent>)
+  constructor(type: 'pressIn', init?: EventInit<GestureResponderEvent>)
+  constructor(type: 'pressOut', init?: EventInit<GestureResponderEvent>)
+  constructor(type: 'momentumScrollBegin', init?: EventInit<ScrollResponderEvent>)
+  constructor(type: 'momentumScrollEnd', init?: EventInit<ScrollResponderEvent>)
+  constructor(type: 'scroll', init?: EventInit<ScrollResponderEvent>)
+  constructor(type: 'scrollBeginDrag', init?: EventInit<ScrollResponderEvent>)
+  constructor(type: 'scrollEndDrag', init?: EventInit<ScrollResponderEvent>)
+  constructor(type: 'load', init?: EventInit<ImageLoadEventData>)
+  constructor(type: 'error', init?: EventInit<ImageErrorEventData>)
+  constructor(type: 'progress', init?: EventInit<ImageProgressEventDataIOS>)
 }
 
 export declare function getEventHandlerName(key: string): string
 
 export interface FireEventFn {
   (element: NativeTestInstance, event: NativeEvent): any
-  focus(element: NativeTestInstance, init?: any): any
-  blur(element: NativeTestInstance, init?: any): any
-  change(element: NativeTestInstance, init?: any): any
+  focus(element: NativeTestInstance, init?: EventInit<TextInputFocusEventData>): any
+  blur(element: NativeTestInstance, init?: EventInit<TextInputFocusEventData>): any
+  change(element: NativeTestInstance, init?: EventInit<TextInputChangeEventData>): any
   changeText(element: NativeTestInstance, value: string): any
-  contentSizeChange(element: NativeTestInstance, init?: any): any
-  endEditing(element: NativeTestInstance, init?: any): any
-  keyPress(element: NativeTestInstance, init?: any): any
-  submitEditing(element: NativeTestInstance, init?: any): any
-  layout(element: NativeTestInstance, init?: any): any
-  selectionChange(element: NativeTestInstance, init?: any): any
-  longPress(element: NativeTestInstance, init?: any): any
-  press(element: NativeTestInstance, init?: any): any
-  pressIn(element: NativeTestInstance, init?: any): any
-  pressOut(element: NativeTestInstance, init?: any): any
-  momentumScrollBegin(element: NativeTestInstance, init?: any): any
-  momentumScrollEnd(element: NativeTestInstance, init?: any): any
-  scroll(element: NativeTestInstance, init?: any): any
-  scrollBeginDrag(element: NativeTestInstance, init?: any): any
-  scrollEndDrag(element: NativeTestInstance, init?: any): any
-  load(element: NativeTestInstance, init?: any): any
-  error(element: NativeTestInstance, init?: any): any
-  progress(element: NativeTestInstance, init?: any): any
+  contentSizeChange(element: NativeTestInstance, init?: EventInit<TextInputContentSizeChangeEventData>): any
+  endEditing(element: NativeTestInstance, init?: EventInit<TextInputEndEditingEventData>): any
+  keyPress(element: NativeTestInstance, init?: EventInit<TextInputKeyPressEventData>): any
+  submitEditing(element: NativeTestInstance, init?: EventInit<TextInputSubmitEditingEventData>): any
+  layout(element: NativeTestInstance, init?: EventInit<LayoutChangeEvent['nativeEvent']>): any
+  selectionChange(element: NativeTestInstance, init?: EventInit<TextInputSelectionChangeEventData>): any
+  longPress(element: NativeTestInstance, init?: EventInit<GestureResponderEvent>): any
+  press(element: NativeTestInstance, init?: EventInit<GestureResponderEvent>): any
+  pressIn(element: NativeTestInstance, init?: EventInit<GestureResponderEvent>): any
+  pressOut(element: NativeTestInstance, init?: EventInit<GestureResponderEvent>): any
+  momentumScrollBegin(element: NativeTestInstance, init?: EventInit<ScrollResponderEvent>): any
+  momentumScrollEnd(element: NativeTestInstance, init?: EventInit<ScrollResponderEvent>): any
+  scroll(element: NativeTestInstance, init?: EventInit<ScrollResponderEvent>): any
+  scrollBeginDrag(element: NativeTestInstance, init?: EventInit<ScrollResponderEvent>): any
+  scrollEndDrag(element: NativeTestInstance, init?: EventInit<ScrollResponderEvent>): any
+  load(element: NativeTestInstance, init?: EventInit<ImageLoadEventData>): any
+  error(element: NativeTestInstance, init?: EventInit<ImageErrorEventData>): any
+  progress(element: NativeTestInstance, init?: EventInit<ImageProgressEventDataIOS>): any
 }
+
 export declare const fireEvent: FireEventFn
 
 // GET NODE TEXT
