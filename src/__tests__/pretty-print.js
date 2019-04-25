@@ -18,12 +18,12 @@ test('it prints correctly with one child', () => {
   );
 
   expect(prettyPrint(baseElement)).toMatchInlineSnapshot(`
-  "[36m<View>[39m
-    [36m<Text>[39m
-      [0mHello World![0m
-    [36m</Text>[39m
-  [36m</View>[39m"
-  `);
+"[36m<View>[39m
+  [36m<Text>[39m
+    [0mHello World![0m
+  [36m</Text>[39m
+[36m</View>[39m"
+`);
 });
 
 test('it prints correctly with multiple children', () => {
@@ -35,15 +35,15 @@ test('it prints correctly with multiple children', () => {
   );
 
   expect(prettyPrint(baseElement)).toMatchInlineSnapshot(`
-  "[36m<View>[39m
-    [36m<Text>[39m
-      [0mHello[0m
-    [36m</Text>[39m
-    [36m<Text>[39m
-      [0mWorld![0m
-    [36m</Text>[39m
-  [36m</View>[39m"
-  `);
+"[36m<View>[39m
+  [36m<Text>[39m
+    [0mHello[0m
+  [36m</Text>[39m
+  [36m<Text>[39m
+    [0mWorld![0m
+  [36m</Text>[39m
+[36m</View>[39m"
+`);
 });
 
 test('it supports truncating the output length', () => {
