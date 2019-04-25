@@ -295,7 +295,7 @@ export declare function render<T>(ui: ReactElement, options: RenderOptionsWithQu
 export interface RenderResult {
   container: ReactTestRenderer
   baseElement: NativeTestInstance
-  debug: () => void
+  debug: (el?: NativeTestInstance) => void
   rerender: (ui: ReactElement) => void
   unmount: () => void
 }
