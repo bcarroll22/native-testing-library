@@ -16,5 +16,7 @@ test('queryByProp', () => {
 
   expect(queryByTestId(container, 'foo')).not.toBeNull();
   expect(queryByProp('importantForAccessibility', container, 'auto')).toBeNull();
-  expect(() => queryByProp('importantForAccessibility', container, /no/)).toThrow(/multiple/);
+  expect(() => queryByProp('importantForAccessibility', container, /no/)).toThrow(
+    /multiple elements/,
+  );
 });
