@@ -100,9 +100,8 @@ function queryByProp(prop, container, match, ...args) {
   return els[0] || null;
 }
 
-// this accepts a query function and returns a function which throws an error
-// if more than one elements is returned, otherwise it returns the first
-// element or null
+// accepts a query and returns a function that throws if more than one element is returned, otherwise
+// returns the result or null
 function makeSingleQuery(allQuery, getMultipleError) {
   return (container, ...args) => {
     const els = allQuery(container, ...args);
@@ -113,8 +112,7 @@ function makeSingleQuery(allQuery, getMultipleError) {
   };
 }
 
-// this accepts a query function and returns a function which throws an error
-// if an empty list of elements is returned
+// accepts a query and returns a function that throws if an empty list is returned
 function makeGetAllQuery(allQuery, getMissingError) {
   return (container, ...args) => {
     const els = allQuery(container, ...args);
@@ -125,8 +123,7 @@ function makeGetAllQuery(allQuery, getMissingError) {
   };
 }
 
-// this accepts a getter query function and returns a function which calls
-// waitForElement and passing a function which invokes the getter.
+// accepts a getter  and returns a function that calls waitForElement which invokes the getter.
 function makeFindQuery(getter) {
   return (container, text, options, waitForElementOptions) =>
     waitForElement(() => getter(container, text, options), waitForElementOptions);
