@@ -46,7 +46,7 @@ function render(ui, { options = {}, wrapper: WrapperComponent, queries } = {}) {
         testRenderer.update(wrapUiIfNeeded(rerenderUi));
       });
     },
-    asFragment: () => {
+    asJSON: () => {
       return toJSON(container);
     },
     ...getQueriesForElement(baseElement, queries),

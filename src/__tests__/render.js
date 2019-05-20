@@ -26,10 +26,10 @@ it('supports fragments', () => {
     }
   }
 
-  const { asFragment, unmount } = render(<Test />);
-  expect(asFragment()).toMatchSnapshot();
+  const { asJSON, unmount } = render(<Test />);
+  expect(asJSON()).toMatchSnapshot();
   unmount();
-  expect(asFragment()).toBeNull();
+  expect(asJSON()).toBeNull();
 });
 
 test('renders options.wrapper around node', () => {
