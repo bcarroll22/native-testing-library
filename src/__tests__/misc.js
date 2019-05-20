@@ -2,7 +2,9 @@ import React from 'react';
 import { Button, Picker, Text, View } from 'react-native';
 import { toMatchDiffSnapshot } from 'snapshot-diff';
 
-import { fireEvent, render } from '../';
+import { cleanup, fireEvent, render } from '../';
+
+afterEach(cleanup);
 
 test('<Picker /> works', () => {
   function Wrapper() {

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Text, SafeAreaView, View } from 'react-native';
 
-import { render, toJSON } from '../';
+import { cleanup, render } from '../';
+
+afterEach(cleanup);
 
 test('renders View', () => {
   const { container } = render(<View />);

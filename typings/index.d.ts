@@ -46,6 +46,8 @@ export function render<Q extends Queries>(
   options: RenderOptions<Q>,
 ): RenderResult<Q>;
 
+export const cleanup: () => void;
+
 export const act: (callback: () => void) => void;
 
 export { queries, queryHelpers, within };
