@@ -1,10 +1,11 @@
 import { ReactElement, ComponentType } from 'react';
 import { ReactTestRenderer } from 'react-test-renderer';
 
-import { getQueriesForElement, BoundFunction } from './get-queries-for-element';
 import * as queries from './queries';
 import * as queryHelpers from './query-helpers';
 import { NativeTestInstance } from './query-helpers';
+import { NativeTestInstanceJSON } from './to-json';
+import { getQueriesForElement, BoundFunction } from './get-queries-for-element';
 
 declare const within: typeof getQueriesForElement;
 
@@ -25,9 +26,10 @@ interface Queries {
 export type RenderResult<Q extends Queries = typeof queries> = {
   baseElement: NativeTestInstance;
   container: NativeTestInstance;
-  debug: () => void;
+  debug: (element?: NativeTestInstance) => void;
   rerender: (ui: ReactElement) => void;
   unmount: () => void;
+  asFragment: () => NativeTestInstanceJSON;
 } & { [P in keyof Q]: BoundFunction<Q[P]> };
 
 export interface RenderOptions<Q extends Queries = typeof queries> {
