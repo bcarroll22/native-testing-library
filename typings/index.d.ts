@@ -47,19 +47,9 @@ export function render<Q extends Queries>(
   options: RenderOptions<Q>,
 ): RenderResult<Q>;
 
-export function asyncRender(
-  ui: ReactElement<any>,
-  options?: Omit<RenderOptions, 'queries'>,
-): Promise<RenderResult>;
-export function asyncRender<Q extends Queries>(
-  ui: ReactElement<any>,
-  options: RenderOptions<Q>,
-): Promise<RenderResult<Q>>;
-
 export const cleanup: () => void;
 
 export const act: (callback: () => void) => void;
-export function act(callback: () => Promise<void | undefined>): Promise<undefined>;
 
 export { queries, queryHelpers, within };
 export * from './to-json';

@@ -32,9 +32,8 @@ export declare class NativeTestEvent {
 
 export type FireFunction = (element: NativeTestInstance, event: NativeTestEvent) => boolean;
 export type FireObject = {
-  [K in EventType]: (element: NativeTestInstance, options?: {}) => boolean;
+  [K in EventType]: (element: NativeTestInstance, options?: {}) => boolean
 };
 
 export const getEventHandlerName: (key: string) => string;
 export const fireEvent: FireFunction & FireObject;
-export const asyncFireEvent: Promise<FireFunction & FireObject>;
