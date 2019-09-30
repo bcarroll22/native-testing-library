@@ -53,45 +53,6 @@ function render(ui, { options = {}, wrapper: WrapperComponent, queries } = {}) {
   };
 }
 
-async function asyncRender(ui, { options = {}, wrapper: WrapperComponent, queries } = {}) {
-  const wrapUiIfNeeded = innerElement =>
-    WrapperComponent ? (
-      <AppContainer>
-        <WrapperComponent>{innerElement}</WrapperComponent>
-      </AppContainer>
-    ) : (
-      <AppContainer>{innerElement}</AppContainer>
-    );
-
-  let testRenderer;
-
-  await act(async () => {
-    testRenderer = TR.create(wrapUiIfNeeded(ui), options);
-  });
-
-  renderers.add(testRenderer);
-
-  const wrappers = proxyElement(testRenderer.root).findAll(n => n.type === 'View');
-  const baseElement = wrappers[0]; // Includes YellowBox and your render
-  const container = wrappers[1]; // Includes only your render
-
-  return {
-    baseElement,
-    container,
-    debug: (el = baseElement) => console.log(prettyPrint(el)),
-    unmount: () => testRenderer.unmount(),
-    rerender: async rerenderUi => {
-      await act(async () => {
-        testRenderer.update(wrapUiIfNeeded(rerenderUi));
-      });
-    },
-    asJSON: () => {
-      return toJSON(container);
-    },
-    ...getQueriesForElement(baseElement, queries),
-  };
-}
-
 function cleanup() {
   renderers.forEach(cleanupRenderer);
 }
@@ -109,38 +70,10 @@ function fireEvent(...args) {
   return returnValue;
 }
 
-async function asyncFireEvent(...args) {
-  let returnValue;
-  await act(async () => {
-    returnValue = rntlFireEvent(...args);
-  });
-  return returnValue;
-}
-
 Object.keys(rntlFireEvent).forEach(typeArg => {
   fireEvent[typeArg] = (...args) => {
     let returnValue;
     act(() => {
-      returnValue = rntlFireEvent[typeArg](...args);
-    });
-    return returnValue;
-  };
-});
-
-Object.keys(rntlFireEvent).forEach(typeArg => {
-  fireEvent[typeArg] = (...args) => {
-    let returnValue;
-    act(() => {
-      returnValue = rntlFireEvent[typeArg](...args);
-    });
-    return returnValue;
-  };
-});
-
-Object.keys(rntlFireEvent).forEach(async typeArg => {
-  asyncFireEvent[typeArg] = async (...args) => {
-    let returnValue;
-    await act(async () => {
       returnValue = rntlFireEvent[typeArg](...args);
     });
     return returnValue;
@@ -148,4 +81,4 @@ Object.keys(rntlFireEvent).forEach(async typeArg => {
 });
 
 export * from './lib';
-export { act, cleanup, fireEvent, asyncFireEvent, render, asyncRender, NativeTestEvent };
+export { act, cleanup, fireEvent, render, NativeTestEvent };
