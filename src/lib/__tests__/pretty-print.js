@@ -88,3 +88,29 @@ test('it supports truncating the output length', () => {
 
   expect(prettyPrint(container, 5)).toMatch(/\.\.\./);
 });
+
+test('it supports removing props from output', () => {
+  const { container } = render(
+    <View style={{ width: 100 }}>
+      <Text>Hello World!</Text>
+    </View>,
+  );
+
+  const options = {
+    formatting: {
+      propsToRemove: ['style', 'pointerEvents'],
+    },
+  };
+
+  expect(prettyPrint(container, undefined, options)).toMatchInlineSnapshot(`
+    "[36m<View[39m
+      [33mcollapsable[39m=[32m{true}[39m
+    [36m>[39m
+      [36m<View>[39m
+        [36m<Text>[39m
+          [0mHello World![0m
+        [36m</Text>[39m
+      [36m</View>[39m
+    [36m</View>[39m"
+  `);
+});

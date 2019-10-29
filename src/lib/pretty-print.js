@@ -5,17 +5,48 @@ import { toJSON } from './to-json';
 
 const { ReactTestComponent, ReactElement } = prettyFormat.plugins;
 
-function prettyPrint(element, maxLength, options) {
+function prettyPrint(element, maxLength, options = {}) {
+  let plugins = [ReactTestComponent, ReactElement];
+  const { formatting, ...rest } = options;
+
+  if (formatting && formatting.propsToRemove) {
+    const formatterPlugin = createFormatter(options.formatting.propsToRemove);
+    plugins = [formatterPlugin, ...plugins];
+  }
+
   const debugContent = prettyFormat(toJSON(element), {
-    plugins: [ReactTestComponent, ReactElement],
+    plugins: plugins,
     printFunctionName: false,
     highlight: true,
-    ...options,
+    ...rest,
   });
 
   return maxLength !== undefined && debugContent && debugContent.toString().length > maxLength
     ? `${debugContent.slice(0, maxLength)}...`
     : debugContent;
+}
+
+function createFormatter(propsToRemove) {
+  const plugin = {
+    test(val) {
+      return val.props !== undefined;
+    },
+    serialize(element, config, indentation, depth, refs, printer) {
+      Object.keys(element.props).map(prop => {
+        if (propsToRemove.includes(prop)) {
+          delete element.props[prop];
+        }
+      });
+
+      if (ReactTestComponent.test(element)) {
+        return ReactTestComponent.serialize(element, config, indentation, depth, refs, printer);
+      }
+
+      return ReactElement.serialize(element, config, indentation, depth, refs, printer);
+    },
+  };
+
+  return plugin;
 }
 
 export { prettyPrint };
