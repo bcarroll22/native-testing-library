@@ -5,7 +5,7 @@ export function prettyPrint(
   maxLength?: number,
   options: {
     formatting: {
-      propsToRemove: string[];
+      removeProps: string[];
     };
   },
 ): string | false;

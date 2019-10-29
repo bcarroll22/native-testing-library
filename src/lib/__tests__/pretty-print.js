@@ -98,7 +98,7 @@ test('it supports removing props from output', () => {
 
   const options = {
     formatting: {
-      propsToRemove: ['style', 'pointerEvents'],
+      removeProps: ['style', 'pointerEvents'],
     },
   };
 

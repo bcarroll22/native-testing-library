@@ -24,7 +24,7 @@ test('debug pretty prints the baseElement', () => {
 
 test('debug can remove specified props from output', () => {
   const options = {
-    propsToRemove: ['style', 'pointerEvents', 'collapsable'],
+    removeProps: ['style', 'pointerEvents', 'collapsable'],
   };
 
   const { debug } = render(

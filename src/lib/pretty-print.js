@@ -9,8 +9,8 @@ function prettyPrint(element, maxLength, options = {}) {
   let plugins = [ReactTestComponent, ReactElement];
   const { formatting, ...rest } = options;
 
-  if (formatting && formatting.propsToRemove) {
-    const formatterPlugin = createFormatter(options.formatting.propsToRemove);
+  if (formatting && formatting.removeProps) {
+    const formatterPlugin = createFormatter(options.formatting.removeProps);
     plugins = [formatterPlugin, ...plugins];
   }
 
@@ -38,11 +38,7 @@ function createFormatter(propsToRemove) {
         }
       });
 
-      if (ReactTestComponent.test(element)) {
-        return ReactTestComponent.serialize(element, config, indentation, depth, refs, printer);
-      }
-
-      return ReactElement.serialize(element, config, indentation, depth, refs, printer);
+      return ReactTestComponent.serialize(element, config, indentation, depth, refs, printer);
     },
   };
 
