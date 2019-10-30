@@ -11,6 +11,7 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup();
+  log = undefined;
   console.log.mockRestore();
 });
 
@@ -23,18 +24,21 @@ test('debug pretty prints the baseElement', () => {
 });
 
 test('debug can remove specified props from output', () => {
-  const options = {
-    removeProps: ['style', 'pointerEvents', 'collapsable'],
-  };
-
   const { debug } = render(
     <View style={{ width: 300 }}>
       <Text>Hello World!</Text>
     </View>,
-    { formatting: options },
+    {
+      options: {
+        debug: {
+          omitProps: ['style', 'pointerEvents', 'collapsable'],
+        },
+      },
+    },
   );
 
   debug();
+
   expect(console.log).toHaveBeenCalledTimes(1);
   expect(log).toMatchInlineSnapshot(`
     "[36m<View>[39m

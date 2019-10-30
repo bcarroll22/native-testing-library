@@ -96,13 +96,8 @@ test('it supports removing props from output', () => {
     </View>,
   );
 
-  const options = {
-    formatting: {
-      removeProps: ['style', 'pointerEvents'],
-    },
-  };
-
-  expect(prettyPrint(container, undefined, options)).toMatchInlineSnapshot(`
+  expect(prettyPrint(container, undefined, { debug: { omitProps: ['style', 'pointerEvents'] } }))
+    .toMatchInlineSnapshot(`
     "[36m<View[39m
       [33mcollapsable[39m=[32m{true}[39m
     [36m>[39m
