@@ -35,7 +35,9 @@ export type RenderResult<Q extends Queries = typeof queries> = {
 export interface RenderOptions<Q extends Queries = typeof queries> {
   queries?: Q;
   wrapper?: ComponentType;
-  debug?: DebugOptions;
+  options?: {
+    debug?: DebugOptions;
+  };
 }
 
 export interface DebugOptions {
