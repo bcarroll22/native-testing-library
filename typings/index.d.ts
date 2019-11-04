@@ -35,6 +35,11 @@ export type RenderResult<Q extends Queries = typeof queries> = {
 export interface RenderOptions<Q extends Queries = typeof queries> {
   queries?: Q;
   wrapper?: ComponentType;
+  debug?: DebugOptions;
+}
+
+export interface DebugOptions {
+  omitProps: string[];
 }
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
