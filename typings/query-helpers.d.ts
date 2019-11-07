@@ -1,4 +1,4 @@
-import { ReactTestInstance as ReactTestInstanceBase } from 'react-test-renderer';
+import { ReactTestInstance } from 'react-test-renderer';
 
 import { Matcher, MatcherOptions } from './matches';
 
@@ -8,13 +8,13 @@ export type SelectorMatcherOptions = Omit<MatcherOptions, 'selector'> & {
   selector?: string;
 };
 
-type ReactTestInstance = ReactTestInstanceBase & {
+type ReactTestInstanceExtended = ReactTestInstance & {
   getProp: (name: string) => NativeTestInstance;
   parentNode: NativeTestInstance;
 };
 
 export type NativeTestInstance = Omit<
-  ReactTestInstance,
+  ReactTestInstanceExtended,
   'findAllByProps' | 'findAllByType' | 'findByProps' | 'findByType' | 'instance'
 >;
 
