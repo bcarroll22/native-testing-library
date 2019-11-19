@@ -163,7 +163,7 @@ reason it was included in this package is because we need you to import render f
 `dom-testing-library`, and that's an important blocker. Some day, maybe we'll try to allow use of
 that library with this one somehow.
 
-## Ceveats
+## Gotchas
 
 If you are using jest, using `jest.useFakeTimers()` will stop several async functions like `find*` and `waitForElement` from working.
 
