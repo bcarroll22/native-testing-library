@@ -1,3 +1,5 @@
+import ReactNative from 'react-native';
+
 const viewEvents = [
   'accessibilityEscape',
   'accessibilityTap',
@@ -83,7 +85,9 @@ class NativeTestEvent {
   constructor(typeArg, ...args) {
     this.args = args;
     this.typeArg = typeArg;
-    this.validTargets = Object.keys(eventMap).filter(c => eventMap[c].includes(typeArg));
+    this.validTargets = Object.keys(eventMap)
+      .filter(c => eventMap[c].includes(typeArg))
+      .map(ComponentName => ReactNative[ComponentName]);
   }
 
   set target(target) {

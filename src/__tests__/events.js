@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactNative from 'react-native';
 import '@testing-library/jest-native/extend-expect';
 import { Button, Image, Text, TextInput, TouchableHighlight } from 'react-native';
 
@@ -6,27 +7,29 @@ import { render, fireEvent, eventMap, getEventHandlerName, wait, cleanup } from 
 
 afterEach(cleanup);
 
-Object.keys(eventMap).forEach(key => {
-  describe(`${key} events`, () => {
-    const config = eventMap[key];
+Object.keys(eventMap).forEach(ComponentName => {
+  describe(`${ComponentName} events`, () => {
+    const config = eventMap[ComponentName];
 
     config.forEach(event => {
-      const spy = jest.fn();
-      const handlerName = getEventHandlerName(event);
+      test(event, () => {
+        const spy = jest.fn();
+        const handlerName = getEventHandlerName(event);
 
-      const {
-        container: {
-          children: [target],
-        },
-      } = render(
-        React.createElement(key, {
-          [handlerName]: spy,
-        }),
-      );
+        const {
+          container: {
+            children: [target],
+          },
+        } = render(
+          React.createElement(ReactNative[ComponentName], {
+            [handlerName]: spy,
+          }),
+        );
 
-      fireEvent[event](target);
+        fireEvent[event](target);
 
-      expect(spy).toHaveBeenCalledTimes(1);
+        expect(spy).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });
