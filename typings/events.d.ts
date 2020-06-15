@@ -1,6 +1,8 @@
 import { NativeTestInstance } from './query-helpers';
 
 export type EventType =
+  | 'accessibilityEscape'
+  | 'accessibilityTap'
   | 'focus'
   | 'blur'
   | 'change'
@@ -24,7 +26,22 @@ export type EventType =
   | 'load'
   | 'error'
   | 'progress'
-  | 'custom';
+  | 'custom'
+  | 'magicTap'
+  | 'moveShouldSetResponder'
+  | 'moveShouldSetResponderCapture'
+  | 'responderGrant'
+  | 'responderMove'
+  | 'responderReject'
+  | 'responderRelease'
+  | 'responderTerminate'
+  | 'responderTerminationRequest'
+  | 'startShouldSetResponder'
+  | 'startShouldSetResponderCapture'
+  | 'touchCancel'
+  | 'touchEnd'
+  | 'touchMove'
+  | 'touchStart';
 
 export declare class NativeTestEvent {
   constructor(typeArg: string, ...params: any[]);
@@ -32,7 +49,7 @@ export declare class NativeTestEvent {
 
 export type FireFunction = (element: NativeTestInstance, event: NativeTestEvent) => boolean;
 export type FireObject = {
-  [K in EventType]: (element: NativeTestInstance, options?: {}) => boolean
+  [K in EventType]: (element: NativeTestInstance, options?: {}) => boolean;
 };
 
 export const getEventHandlerName: (key: string) => string;

@@ -13,6 +13,10 @@ const viewEvents = [
   'responderTerminationRequest',
   'startShouldSetResponder',
   'startShouldSetResponderCapture',
+  'touchCancel',
+  'touchEnd',
+  'touchMove',
+  'touchStart',
 ];
 
 const eventMap = {
