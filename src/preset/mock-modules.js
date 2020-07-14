@@ -31,15 +31,4 @@ jest.doMock('react-native/Libraries/Components/Picker/Picker', () => {
 });
 
 // Re-mock ReactNative with native methods mocked
-jest
-  .mock('react-native/Libraries/Animated/src/NativeAnimatedHelper')
-  .doMock('react-native/Libraries/Renderer/shims/ReactNative', () => {
-    const ReactNative = jest.requireActual('react-native/Libraries/Renderer/shims/ReactNative');
-    const NativeMethodsMixin =
-      ReactNative.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.NativeMethodsMixin;
-
-    Object.assign(NativeMethodsMixin, mockNativeMethods);
-    Object.assign(ReactNative.NativeComponent.prototype, mockNativeMethods);
-
-    return ReactNative;
-  });
+jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
