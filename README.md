@@ -43,6 +43,7 @@
 - [Installation](#installation)
 - [Hooks](#hooks)
 - [Other Solutions](#other-solutions)
+- [Related External Resources](#related-external-resources)
 - [Guiding Principles](#guiding-principles)
 - [Inspiration](#inspiration)
 - [Contributors](#contributors)
@@ -128,6 +129,12 @@ If you are interested in testing a custom hook, check out
 
 - [`react-native-testing-library`](https://github.com/callstack/react-native-testing-library)
 - [`enzyme`](https://airbnb.io/enzyme/docs/guides/react-native.html)
+
+## Related External Resources
+
+- [Real world extensive examples repo](https://github.com/vanGalilea/react-native-testing)
+- [Where and how to start testing 🧪 your react-native app ⚛️ and how to keep on testin’](https://blog.usejournal.com/where-and-how-to-start-testing-your-react-native-app-%EF%B8%8F-and-how-to-keep-on-testin-ec3464fb9b41)
+
 
 ## Guiding principles
 
